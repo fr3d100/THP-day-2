@@ -69,4 +69,6 @@ end
 puts "2 destinataires ont été rajoutés à chaque message envoyé"
 
 
+#Création d'un gossip "Anoymous"
+User.create(first_name: "Anonymous", last_name: "Anonymous", description: "Je reste anonyme parce que j'ai plein de Gossip à partager sur tout le monde, attention, le prochain est peut-être bien toi!", email: "anonymous@anonyme.fr", age: Faker::Number.between(7, 77).to_i, city: City.order("RANDOM()").first)
 

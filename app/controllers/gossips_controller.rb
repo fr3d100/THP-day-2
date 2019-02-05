@@ -11,16 +11,21 @@ class GossipsController < ApplicationController
   end
 
   def new
-  	
+  	@gossip = Gossip.last
   end
 
   def create
-  	g = Gossip.new
-  	g.title = params['gossip_title']
-  	g.content = params['gossip_content']
-  	g.user = User.first
-  	g.save
-  	redirect_to gossips_path
+  	@gossip = Gossip.new
+  	@gossip.title = params['gossip_title']
+  	@gossip.content = params['gossip_content']
+  	@gossip.user = User.last
+
+  	if @gossip.save # essaie de sauvegarder en base @gossip
+  		redirect_to gossips_path
+	  else
+	     render :template => 'gossips/new'# sinon, il render la view new (qui est celle sur laquelle on est déjà)
+	  end
+
   end
 
 end

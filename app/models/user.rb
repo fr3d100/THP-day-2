@@ -7,4 +7,5 @@ class User < ApplicationRecord
 	has_many :join_table_pm_recipients
 	has_many :private_messages, through: :join_table_pm_recipients
 
+
 end

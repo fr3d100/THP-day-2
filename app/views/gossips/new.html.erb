@@ -3,12 +3,31 @@
 	<div class="col-sm-12">
 			<h1> Ajoute un nouveau potin : </h1>
 	</div>
+</div>
 	<div class="row m-3">
-		<form action= <%= gossips_path %> method="POST">
-			Titre : <input type="text" name="gossip_title">
-			Contenu : <input type="text" name="gossip_content">
-  		<input type="submit" value="Envoyer le formulaire">
-  		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-		</form>
+	<% if @gossip.errors.any? %>
+	<div class="alert alert-danger" role="alert">
+	  <p>Nous n'avons pas réussi à créer le potin pour la (ou les) raison(s) suivante(s) :</p>
+	  <ul>
+	    <% @gossip.errors.full_messages.each do |message| %>
+	      <li><%= message %></li>
+	    <% end %>
+	  </ul>
+	  </div>
+	<% end %>
+	</div>
+
+	<div class="row m-3">
+		<div class="col-sm-12 col-md-6 offset-md-3">
+			<%= form_tag("/gossips", method: "post") do %>
+		  <%= label_tag(:gossip_title, "Titre:") %>
+		  <%= text_field_tag(:gossip_title, "", :class => 'form-control') %>
+		  <br>
+		  <%= label_tag(:gossip_content, "Contenu:") %>
+		  <%= text_area_tag(:gossip_content, "", :class => 'form-control') %>
+		  <br>
+		  <%= submit_tag("Poster", :class => "btn btn-success") %>
+		  </div>
+	<% end %>
 	</div>
 </div>
