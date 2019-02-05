@@ -1,7 +1,10 @@
   	<!-- CONTENT -->
 		<div class="row m-3">
 			<div class="col-sm-12">
-				<h1>Voici le mur des potins les plus secrets de THP Session 7 !</h1>
+				<h1>Les derniers potins :</h1>
+			</div>
+			<div class="row m-3">
+				<%= link_to "Ajouter un potin", new_gossip_path, class: "btn btn-primary" %>
 			</div>
 			<div class="row m-3">
 				<% @gossips.all.each do |gossip|  %>

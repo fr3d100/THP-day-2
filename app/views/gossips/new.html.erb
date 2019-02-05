@@ -1,0 +1,14 @@
+	<!-- CONTENT -->
+<div class="row m-3">
+	<div class="col-sm-12">
+			<h1> Ajoute un nouveau potin : </h1>
+	</div>
+	<div class="row m-3">
+		<form action= <%= gossips_path %> method="POST">
+			Titre : <input type="text" name="gossip_title">
+			Contenu : <input type="text" name="gossip_content">
+  		<input type="submit" value="Envoyer le formulaire">
+  		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+		</form>
+	</div>
+</div>
