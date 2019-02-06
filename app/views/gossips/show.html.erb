@@ -37,3 +37,28 @@
 		</div>
 	</div>
 </div>
+
+<div class="container m-3 d-flex justify-content-center">
+	<div class="row">
+				<% @gossip.comments.reverse_order.each do |comment| %>
+			<div class="col-sm-12 ">
+				<div class="card m-3 ">
+				  <div class="card-header">
+				    Commentaire #<%=comment.id %>
+				  </div>
+				  <div class="card-body">
+				    <blockquote class="blockquote mb-0">
+				      <p><%=comment.content %></p>
+				      <footer class="blockquote-footer">commenté le <%=comment.created_at.strftime("%d/%m/%Y") %> par 
+				      	<%= link_to user_path(comment.user.id) do  %>
+				      	<cite title="Source Title"><%=comment.user.first_name %> <%=comment.user.last_name %></cite>
+				      	<% end%>
+				      </footer>
+				    </blockquote>
+				  </div>
+				</div>
+			</div>
+				<%end%>
+		</div>
+	</div>
+</div>
