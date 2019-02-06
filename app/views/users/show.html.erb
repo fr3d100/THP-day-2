@@ -1,24 +1,60 @@
+<!-- CONTENT -->
+<!-- Jumbottron -->
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4"><i class="fas fa-user-secret"></i> <%=@user.first_name %> <%=@user.last_name %></h1>
+    <p class="lead"><%=@user.description %></p>
+  </div>
+</div>
 
-  	<!-- CONTENT -->
-		<div class="row m-3">
-			<div class="col-sm-12">
-				<h1>Fiche utilisateur : </h1>
-			</div>
-			<div class="row m-3">
-				<div class="col-sm-12">
-					<div class="card" >
-					  <div class="card-body">
-					    <h5 class="card-title"><i class="fas fa-user-secret"></i> <%=@user.first_name %> <%=@user.last_name %>, <%=@user.age %> ans</h5>
-					    <h6 class="card-subtitle mb-2 text-muted"><%=@user.email %></h6>
-					    <p class="card-text"><%=@user.description %></p>
-					    <p class="card-text"><small class="text-muted"><%= @user_signin_date%></small></p>
-					  </div>
-					</div>
-
-					 <%= link_to "Revenir à la liste des potins", gossips_path, class: "badge badge-primary" %>
-					 <%= link_to "Revenir à la liste des utilisateurs", users_path, class: "badge badge-primary" %>
-				</div>
-
-			</div>
-
+<div class="container m-3 d-flex justify-content-center">
+	<div class="row">
+		<div class="col-sm-12 d-flex justify-content-center m-3">
+			<h1>Les infos de <%=@user.first_name %> <%=@user.last_name %></h1>
 		</div>
+		<div class="col-sm-12 d-flex justify-content-center">
+			<table class="table table-bordered">
+			  <thead>
+			    <tr>
+			      <th scope="col">First name</th>
+			      <th scope="col">Last name</th>
+			      <th scope="col">Email address</th>
+			      <th scope="col">City</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr>
+			      <td><%=@user.first_name %></td>
+			      <td><%=@user.last_name %></td>
+			      <td><%=@user.email %></td>
+			      <td><%=link_to @user.city.name, root_path %></td>
+			    </tr>
+			    <tr>
+			  </tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<!-- All potins -->
+<div class="container m-3 d-flex justify-content-center">
+	<div class="row">
+		<div class="col-sm-12 d-flex justify-content-center m-3">
+			<h1>Tous les potins de <%=@user.first_name %>  </h1>
+		</div>
+
+		<div class="col-sm-12 d-flex justify-content-center">
+			<div class="list-group" style="width:50rem">
+				<% @user.gossips.all.each do |gossip|  %>
+					<%= link_to gossip_path(gossip.id), class: "list-group-item list-group-item-action" do %>
+				    <div class="d-flex w-100 justify-content-between" >
+				      <h5 class="mb-1"><i class="fas fa-book-dead"></i> <%=gossip.title%></h5>
+				      <small><%= gossip.user.first_name %></small>
+				    </div>
+				    <small>Découvrir plus</small>
+				  <% end %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
