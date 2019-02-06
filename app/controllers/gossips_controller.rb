@@ -14,6 +14,10 @@ class GossipsController < ApplicationController
   	@gossip = Gossip.last
   end
 
+  def edit
+    @gossip = Gossip.find(params['id'])
+  end
+
   def create
   	@gossip = Gossip.new
   	@gossip.title = params['gossip_title']
@@ -33,6 +37,13 @@ class GossipsController < ApplicationController
       redirect_to new_gossip_path
     end
 
+  end
+
+  def update
+    @gossip = Gossip.find(params["id"])
+    gossip_params = params.require(:gossip).permit(:title, :content)
+    @gossip.update(gossip_params)
+    redirect_to gossip_path
   end
 
 end
