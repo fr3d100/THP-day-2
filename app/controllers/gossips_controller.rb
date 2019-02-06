@@ -46,4 +46,15 @@ class GossipsController < ApplicationController
     redirect_to gossip_path
   end
 
+  def destroy
+    @gossip = Gossip.find(params['id'])
+    if @gossip.destroy
+      flash[:success] = "Le potin a bien été supprimé!"
+      redirect_to root_path
+    else
+      flash[:danger] = "La supression n'a pas fontionnée ..."
+      redirect_to gossip_path(@gossip.id)
+    end
+  end
+
 end
