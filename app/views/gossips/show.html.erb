@@ -38,6 +38,29 @@
 	</div>
 </div>
 
+<div class="container m-3 d-flex justify-content-center flex-column  col-sm-12">
+		<div class="col-sm-12 d-flex justify-content-center m-3">
+			<h1><i class="fas fa-comments"></i> Ajouter un commentaire</h1>
+		</div>
+		<div class="col-sm-12 d-flex justify-content-center m-3">
+			<%= form_tag(gossip_comments_path(@gossip.id, @comment.id), method: "post", :style => "width:500px") do %>
+			<div class="form-group">
+				 <%= label_tag(:comment_content, "Mon commentaire:") %>
+				 <%= text_area_tag(:comment_content, "", :class => 'form-control') %>
+			</div>
+			<input type="hidden" name="gossip_id" value="<%= @gossip.id%>">
+
+			<div class="col-sm-12 d-flex justify-content-center  m-3">
+				<%= submit_tag("Poster", :class => "btn btn-success") %>
+			</div>
+		</div>
+
+	<% end %>
+</div>
+
+
+
+
 <div class="container m-3 d-flex justify-content-center">
 	<div class="row">
 				<% @gossip.comments.reverse_order.each do |comment| %>
@@ -45,6 +68,7 @@
 				<div class="card m-3 ">
 				  <div class="card-header">
 				    Commentaire #<%=comment.id %>
+								<a href="<%=gossip_comment_path(@gossip.id, comment.id)%>" class="btn btn-outline-danger btn-sm" data-confirm="Alors, tu n'assumes pas ce commentaire, tu veux le delete ? " data-method="DELETE"> Supprimer</a>
 				  </div>
 				  <div class="card-body">
 				    <blockquote class="blockquote mb-0">

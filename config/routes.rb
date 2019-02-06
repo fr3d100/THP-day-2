@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/welcome/:first_name', to: 'static_pages#welcome'
 
   resources :gossips do 
-  	resources :comments, only: [:new, :create, :index, :destroy]
+  	resources :comments
   end
 
   resources :users
