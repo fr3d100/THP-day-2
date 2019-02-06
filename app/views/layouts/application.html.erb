@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TheGossipProject</title>
+    <title>THPothins</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -37,10 +37,15 @@
       </div>
     </nav>
 
+    <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>" role="alert"><%= value %></div>
+    <% end %>
 
     <%= yield %>
 
-
+    <div class="row m-3">
+      <%= link_to "Revenir à la liste des potins", root_path, class: "badge badge-primary" %>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

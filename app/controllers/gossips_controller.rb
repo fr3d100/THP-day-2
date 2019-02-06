@@ -21,10 +21,17 @@ class GossipsController < ApplicationController
   	@gossip.user = User.last
 
   	if @gossip.save # essaie de sauvegarder en base @gossip
-  		redirect_to gossips_path
+  		flash[:success] = "Potin créé avec succès!"
+      redirect_to gossips_path
 	  else
-	     render :template => 'gossips/new'# sinon, il render la view new (qui est celle sur laquelle on est déjà)
-	  end
+      flash[:danger] = []
+      @gossip.errors.full_messages.each do |message|
+        flash[:danger] << message
+      end
+      flash[:danger] = flash[:danger].join(" & ")
+
+      redirect_to new_gossip_path
+    end
 
   end
 

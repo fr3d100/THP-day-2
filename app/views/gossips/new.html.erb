@@ -4,21 +4,9 @@
 			<h1> Ajoute un nouveau potin : </h1>
 	</div>
 </div>
-	<div class="row m-3">
-	<% if @gossip.errors.any? %>
-	<div class="alert alert-danger" role="alert">
-	  <p>Nous n'avons pas réussi à créer le potin pour la (ou les) raison(s) suivante(s) :</p>
-	  <ul>
-	    <% @gossip.errors.full_messages.each do |message| %>
-	      <li><%= message %></li>
-	    <% end %>
-	  </ul>
-	  </div>
-	<% end %>
-	</div>
 
 	<div class="row m-3">
-		<div class="col-sm-12 col-md-6 offset-md-3">
+		<div class="col-sm-12 col-lg-6 offset-lg-3">
 			<%= form_tag("/gossips", method: "post") do %>
 		  <%= label_tag(:gossip_title, "Titre:") %>
 		  <%= text_field_tag(:gossip_title, "", :class => 'form-control') %>
@@ -27,6 +15,8 @@
 		  <%= text_area_tag(:gossip_content, "", :class => 'form-control') %>
 		  <br>
 		  <%= submit_tag("Poster", :class => "btn btn-success") %>
+
+	<%= link_to "Revenir à la liste des potins", gossips_path, :class => 'btn btn-primary' %>
 		  </div>
 	<% end %>
 	</div>

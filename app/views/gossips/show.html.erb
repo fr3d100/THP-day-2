@@ -8,13 +8,13 @@
 					  <div class="card-body">
 					    <h5 class="card-title"><%=@gossip.title%> <i class="far fa-comment"></i> </h5>
 				    	<blockquote class="blockquote mb-0">
+								<% @gossip.tags.each do |tag| %>
+				    			<%= link_to tag.title, tag_path(tag.id), :class => "badge badge-success" %>
+				    		<% end%>
 				      	<p><%= @gossip.content %></p>
 				      	<footer class="blockquote-footer">Créé le <%= @gossip.created_at %> <cite title="Source Title">par <i class="fas fa-user-secret"></i> <%= link_to @gossip.user.first_name, user_path(@gossip.user.id)%></cite></footer>
 				    	</blockquote>
 				  	</div>
 					 </div>
 					</div>
-			</div>
-			<div class="row m-3">
-				<%= link_to "Revenir à la liste des potins", root_path, class: "badge badge-primary" %>
 			</div>
