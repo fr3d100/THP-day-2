@@ -32,7 +32,7 @@
 					<%= link_to gossip_path(gossip.id), class: "list-group-item list-group-item-action" do %>
 				    <div class="d-flex w-100 justify-content-between" >
 				      <h5 class="mb-1"><i class="fas fa-book-dead"></i> <%=gossip.title%></h5>
-				      <small><%= gossip.user.first_name %> <%= gossip.user.last_name %></small>
+				      <small>par <%= gossip.user.first_name %> <%= gossip.user.last_name %>, <%= gossip.comments.size %> commentaires</small>
 				    </div>
 				    <small>Découvrir plus</small>
 				  <% end %>

@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
 		@comment.content = params['comment_content']
 
 		if @comment.save 
-			redirect_to root_path
+			redirect_to gossip_path(@comment.gossip.id)
 		else
 			redirect_to gossip_path(@gossip.id)
 		end
