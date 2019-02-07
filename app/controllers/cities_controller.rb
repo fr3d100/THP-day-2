@@ -1,4 +1,6 @@
 class CitiesController < ApplicationController
+	
+	before_action :authenticate_user
 
 	def index
 		@cities = City.all
@@ -13,6 +15,15 @@ class CitiesController < ApplicationController
 	def show
 		@city = City.find(params["id"])
 	end
+	
+	private 
+
+  def authenticate_user
+    unless current_user
+      flash[:danger] = "Vous devez vous connecter pour accéder à cet espace"
+      redirect_to new_session_path
+    end
+  end
 
 
 end

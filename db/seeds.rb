@@ -18,6 +18,7 @@ JoinTableGossipTag.destroy_all
 PrivateMessage.destroy_all
 JoinTablePmRecipient.destroy_all
 Comment.destroy_all
+Like.destroy_all
 
 
 #Création de 10 villes
@@ -78,6 +79,12 @@ Gossip.all.each do |gossip|
 end
 puts "10 commentaires ont été ajoutés à chaque potin"
 
-#Création d'un gossip "Anoymous"
+#Création de 100 likes sur. des gossip et par des users aléatoire
+100.times do
+	Like.create(user: User.order("RANDOM()").first, gossip: Gossip.order("RANDOM()").first)
+end
+puts "100 likes ont été créés"
+
+#Création d'un gossip "Anonymous"
 User.create(first_name: "Ano", last_name: "Nymous", description: "Je reste anonyme parce que j'ai plein de Gossip à partager sur tout le monde, attention, le prochain est peut-être bien toi!", email: "anonymous@anonyme.fr",  password: "azerty", age: Faker::Number.between(7, 77).to_i, city: City.order("RANDOM()").first)
 
