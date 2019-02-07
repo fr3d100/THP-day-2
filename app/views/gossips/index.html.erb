@@ -2,7 +2,7 @@
 <!-- Jumbottron -->
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-4">Bienvenue, <strong><%=  User.find_by(id: session[:user_id]).first_name %> </strong>
+    <h1 class="display-4">Bienvenue, <strong><%=  current_user.first_name %> </strong>
 </h1>
     <p class="lead">Tu décrouvriras ici des potins croustillants sur tous les mousaillons de la session 7 de THP</p>
     <%= link_to "Se déconnecter", session_path(session[:user_id]), method: :delete %>
@@ -34,10 +34,19 @@
 					<%= link_to gossip_path(gossip.id), class: "list-group-item list-group-item-action" do %>
 				    <div class="d-flex w-100 justify-content-between" >
 				      <h5 class="mb-1"><i class="fas fa-book-dead"></i> <%=gossip.title%></h5>
-				      <small>par <%= gossip.user.first_name %> <%= gossip.user.last_name %>, <%= gossip.comments.size %> commentaires</small>
+				      <small>par <%= gossip.user.first_name %> <%= gossip.user.last_name %>, <%= gossip.likes.size %> like(s), <%= gossip.comments.size %> commentaire(s)</small>
 				    </div>
 				    <small>Découvrir plus</small>
 				  <% end %>
+				  <div class="m-3">
+				  	<% if Like.find_by(gossip: gossip.id, user: current_user.id) == nil %>
+							<%= form_tag(gossip_likes_path(gossip.id), method: "post") do %>
+								<%= submit_tag("J'aime", :class => "btn btn-outline-primary btn-sm") %>
+							<% end %>
+						<%else%>
+							<%= link_to "J'aime", gossip_like_path(gossip.id, Like.find_by(gossip: gossip.id, user: current_user.id).id), method: :delete, class: "btn btn-primary btn-sm" %>
+						<%end%>
+					</div>
 				<% end %>
 			</div>
 		</div>

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :gossips do 
   	resources :comments
+    resources :likes, only: [:new, :create, :destroy]
   end
 
   resources :users

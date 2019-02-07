@@ -20,6 +20,20 @@
 			      <footer class="blockquote-footer">Balancé par <%= link_to user_path(@gossip.user.id) do%><cite title="Gossip authoe"><%=@gossip.user.first_name%> <%=@gossip.user.last_name%></cite><% end %></footer>
 			    </blockquote>
 			  </div>
+			  <div class="card-footer text-muted d-inline-flex justify-content-around">
+					<div>
+						<% if Like.find_by(gossip: @gossip.id, user: current_user.id) == nil %>
+							<%= form_tag(gossip_likes_path(@gossip.id), method: "post") do %>
+								<%= submit_tag("J'aime", :class => "btn btn-outline-primary btn-sm") %>
+							<% end %>
+						<%else%>
+				 				<%= link_to "J'aime", gossip_like_path(@gossip.id, Like.find_by(gossip: @gossip.id, user: current_user.id).id), method: :delete, class: "btn btn-primary btn-sm" %>
+						<%end%>
+					</div>
+			    <div>
+			    	<span class="badge badge-secondary"><%= @gossip.likes.size %> likes </span>
+			    </div>
+			  </div>
 			</div>
 		</div>
 	</div>

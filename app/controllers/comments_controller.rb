@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
 	
+	before_action :authenticate_user
+	
 	def create
 		@comment = Comment.new
 		user = current_user
@@ -39,6 +41,15 @@ class CommentsController < ApplicationController
     comment_params = params.require(:comment).permit(:content)
     @comment.update(comment_params)
     redirect_to gossip_path(@comment.gossip.id)
+  end
+
+   private
+
+  def authenticate_user
+    unless current_user
+      flash[:danger] = "Vous devez vous connecter pour accéder à cet espace"
+      redirect_to new_session_path
+    end
   end
 
 end
