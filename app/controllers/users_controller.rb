@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+	before_action :authenticate_user
+
 	def index
 		@users = User.all
 		@top_user = User.first
@@ -46,5 +48,15 @@ class UsersController < ApplicationController
 		end
 
 	end
+
+	private 
+
+	def authenticate_user
+    unless current_user
+      flash[:danger] = "Vous devez vous connecter pour accéder à cet espace"
+      redirect_to new_session_path
+    end
+  end
+
 
 end

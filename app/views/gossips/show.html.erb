@@ -28,16 +28,20 @@
 <div class="container  d-flex justify-content-center">
 	<div class="row">
 		<div class="col-sm-12 d-flex justify-content-center justify-content-between m-3">
-			 <div><%= link_to "Editer ce gossip", edit_gossip_path(@gossip.id), class: "btn btn-primary" %> </div>
 			 <div>
-			 	<%= link_to gossip_path(@gossip.id) do %> 
-					<a href="<%=gossip_path(@gossip.id) %>"class="btn btn-danger" data-confirm="Alors, tu n'assume pas ce gossip, tu veux le delete ? " data-method="DELETE"> Supprimer ce gossip</a>
+			 	<% if @gossip.user == current_user %>
+			 		<%= link_to "Editer ce gossip", edit_gossip_path(@gossip.id), class: "btn btn-outline-primary" %> 
+			 	<% end %>
+			 </div>
+			 <div>
+			 	<% if @gossip.user == current_user %>
+			 		<%= link_to "Supprimer", gossip_path(@gossip.id), method: :delete, class: "btn btn-danger" %>
 				<% end %>
 				</div>
 		</div>
 	</div>
 </div>
-
+<hr>
 <div class="container d-flex justify-content-center flex-column  col-sm-12">
 		<div class="col-sm-12 d-flex justify-content-center m-3">
 			<h1><i class="fas fa-comments"></i> Ajouter un commentaire</h1>
@@ -66,9 +70,22 @@
 				<% @gossip.comments.reverse_order.each do |comment| %>
 			<div class="col-sm-12 d-flex justify-left m-3">
 				<div class="card">
-				  <div class="card-header">
-				    Commentaire #<%=comment.id %>
-								<a href="<%=gossip_comment_path(@gossip.id, comment.id)%>" class="btn btn-outline-danger btn-sm" data-confirm="Alors, tu n'assumes pas ce commentaire, tu veux le delete ? " data-method="DELETE"> Supprimer</a>
+				  <div class="card-header d-flex justify-content-between">
+				    <div>
+				    	Commentaire #<%=comment.id %>
+				    </div>
+						<div class="d-inline-flex ">
+							<div class="mr-2">
+								<% if comment.user == current_user %>
+								<%= link_to "Editer", gossip_comment_path(@gossip.id, comment.id), method: :delete, class: "btn btn-outline-primary btn-sm"  %>
+								<% end %>
+							</div>
+							<div class="mr-2">
+								<% if comment.user == current_user %>
+									<a href="<%=gossip_comment_path(@gossip.id, comment.id)%>" class="btn btn-danger btn-sm" data-confirm="Alors, tu n'assumes pas ce commentaire, tu veux le delete ? " data-method="DELETE"> Supprimer</a>
+								<% end %>
+							</div>
+						</div>
 				  </div>
 				  <div class="card-body">
 				    <blockquote class="blockquote mb-0">

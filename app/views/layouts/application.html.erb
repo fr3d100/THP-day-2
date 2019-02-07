@@ -44,10 +44,11 @@
         </div>
         <div class="dropdown dropleft">
           <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-sign-in-alt"></i>
+            <i class="fas fa-user-secret"></i>
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <% if logged_in? %>
+              <%= link_to "Mon profil", user_path(session[:user_id]), class: "dropdown-item"  %>
               <%= link_to "Se déconnecter", session_path(session[:user_id]), method: :delete, class: "dropdown-item"  %>
             <% else %>
               <%= link_to "S'inscrire", new_user_path, class: "dropdown-item"  %>
