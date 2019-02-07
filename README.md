@@ -1,24 +1,9 @@
-# README
+# Bienvenue dans ma super appli THPotin !
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+L'appli est disponible en production à l'adresse suivante :
+[THPotins](https://gossip-fbnd.herokuapp.com)
 
-Things you may want to cover:
+![Popcorn](https://media.giphy.com/media/KyGEqzh9PAHPDZX5ps/giphy.gif)
 
-* Ruby version
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Fait avec :hearts: par @Fred
