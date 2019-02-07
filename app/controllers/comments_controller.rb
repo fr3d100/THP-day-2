@@ -37,7 +37,7 @@ class CommentsController < ApplicationController
    def update
     @comment = Comment.find(params["id"])
     comment_params = params.require(:comment).permit(:content)
-    @gossip.update(gossip_params)
+    @comment.update(comment_params)
     redirect_to gossip_path(@comment.gossip.id)
   end
 

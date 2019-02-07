@@ -9,17 +9,15 @@
 
 <div class="container m-3 d-flex justify-content-center col-sm-12">
 	
-	<%= form_for @gossip do |f| %>
-		<%= f.nested_fields_for :comments do |c| %>
+	<%= form_for [@gossip, @comment] do |f| %>
 		<div class="form-group">
 			<label>Commentaire</label>
-			<%= c.text_area :content, class: "form-control"%>
+			<%= f.text_area :content, class: "form-control"%>
 		</div>
 
 		<div class="col-sm-12 d-flex justify-content-center  m-3">
 			<%= f.submit "Mettre à jour le commentaire", class: "btn btn-primary"%>
 		</div>
-	<% end %>
 	<% end %>
 </div>
 

@@ -77,7 +77,7 @@
 						<div class="d-inline-flex ">
 							<div class="mr-2">
 								<% if comment.user == current_user %>
-								<%= link_to "Editer", gossip_comment_path(@gossip.id, comment.id), method: :delete, class: "btn btn-outline-primary btn-sm"  %>
+								<%= link_to "Editer", edit_gossip_comment_path(@gossip.id, comment.id), class: "btn btn-outline-primary btn-sm"  %>
 								<% end %>
 							</div>
 							<div class="mr-2">
