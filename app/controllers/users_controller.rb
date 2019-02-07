@@ -14,4 +14,37 @@ class UsersController < ApplicationController
 		@user = User.find(params['id'])
 	end
 
+	def new
+		@cities = City.all
+	end
+
+	def create
+		puts params
+		@user = User.new
+		@user.first_name = params['first_name']
+		@user.last_name = params['last_name']
+		@user.age = params['age']
+		@user.email = params['email']
+		@user.password = params['password']
+		@user.password_confirmation = params['password_confirm']
+		@user.city = City.find(params['city'])
+
+		if @user.save
+			log_in(@user)
+			flash[:success] = "Bravo, votre compte a été créé"
+			redirect_to root_path
+		else
+			puts "Problème lors de la tentative de création de l'utilisateur"
+			flash[:danger] = []
+      @user.errors.full_messages.each do |message|
+        flash[:danger] << message
+      end
+      flash[:danger] = flash[:danger].join(" & ")
+
+      redirect_to new_user_path
+
+		end
+
+	end
+
 end

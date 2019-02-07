@@ -28,7 +28,7 @@ puts "10 villes ont été crées"
 
 #Création de 10 users
 10.times do
-	User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: "J'ai plein de Gossip à partager sur tout le monde, attention, le prochain est peut-être bien toi!", email: Faker::Internet.email, age: Faker::Number.between(7, 77).to_i, city: City.order("RANDOM()").first)
+	u = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: "J'ai plein de Gossip à partager sur tout le monde, attention, le prochain est peut-être bien toi!", email: Faker::Internet.email, password: "azerty", age: Faker::Number.between(7, 77).to_i, city: City.order("RANDOM()").first)
 end 
 puts "10 utilisateurs ont été créés"
 
@@ -79,5 +79,5 @@ end
 puts "10 commentaires ont été ajoutés à chaque potin"
 
 #Création d'un gossip "Anoymous"
-User.create(first_name: "Ano", last_name: "Nymous", description: "Je reste anonyme parce que j'ai plein de Gossip à partager sur tout le monde, attention, le prochain est peut-être bien toi!", email: "anonymous@anonyme.fr", age: Faker::Number.between(7, 77).to_i, city: City.order("RANDOM()").first)
+User.create(first_name: "Ano", last_name: "Nymous", description: "Je reste anonyme parce que j'ai plein de Gossip à partager sur tout le monde, attention, le prochain est peut-être bien toi!", email: "anonymous@anonyme.fr",  password: "azerty", age: Faker::Number.between(7, 77).to_i, city: City.order("RANDOM()").first)
 

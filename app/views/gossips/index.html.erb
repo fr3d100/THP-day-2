@@ -2,8 +2,10 @@
 <!-- Jumbottron -->
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-4">Bienvenue sur THPotins</h1>
+    <h1 class="display-4">Bienvenue, <strong><%=  User.find_by(id: session[:user_id]).first_name %> </strong>
+</h1>
     <p class="lead">Tu décrouvriras ici des potins croustillants sur tous les mousaillons de la session 7 de THP</p>
+    <%= link_to "Se déconnecter", session_path(session[:user_id]), method: :delete %>
   </div>
 </div>
 

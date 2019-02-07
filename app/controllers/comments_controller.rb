@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
 	
 	def create
 		@comment = Comment.new
-		user = User.order("RANDOM()").first
+		user = current_user
 		gossip = Gossip.find(params['gossip_id'])
 		puts gossip.id
 		@comment.user = user
